@@ -33,7 +33,7 @@ class custom_deconv2d(pt.VarStoreMethod):
         # graph with unknown batch size, from https://github.com/tensorflow/tensorflow/issues/833
         dyn_input_shape = tf.shape(input_layer)
         batch_size = dyn_input_shape[0]
-        ts_output_shape = tf.pack([batch_size,
+        ts_output_shape = tf.stack([batch_size,
                                    output_shape[1],
                                    output_shape[2],
                                    output_shape[3]])
@@ -65,7 +65,7 @@ class custom_fully_connected(pt.VarStoreMethod):
         input_ = input_layer.tensor
         if True:#try:
             if len(shape) == 4:
-                input_ = tf.reshape(input_, tf.pack([tf.shape(input_)[0], np.prod(shape[1:])]))
+                input_ = tf.reshape(input_, tf.stack([tf.shape(input_)[0], np.prod(shape[1:])]))
                 input_.set_shape([None, np.prod(shape[1:])])
                 shape = input_.get_shape().as_list()
 

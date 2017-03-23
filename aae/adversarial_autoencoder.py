@@ -479,8 +479,8 @@ class AAE():
 
         # logging
         for k, v in self.log_vars:
-            tf.scalar_summary(k, v)
-        tf.scalar_summary("validation_loss", self.test_rec_loss)
+            tf.summary.scalar(k, v)
+        tf.summary.scalar("validation_loss", self.test_rec_loss)
 
     def _make_latent_exploration_op(self):
         """
@@ -522,8 +522,8 @@ class AAE():
             row_img = []
             for col in xrange(ny):
                 row_img.append(imgs[row, col, :, :, :])
-            stacked_img.append(tf.concat(1, row_img))
-        self.latent_exploration_op = tf.concat(0, stacked_img)
+            stacked_img.append(tf.concat(axis=1, values=row_img))
+        self.latent_exploration_op = tf.concat(axis=0, values=stacked_img)
 
     def _discriminate(self, z_var):
         d_out = self.discriminator_template.construct(z_in=z_var)
@@ -567,13 +567,13 @@ class AAE():
     def train(self):
         """Starts the training"""
 
-        init = tf.initialize_all_variables() #tf.global_variables_initializer()
+        init = tf.global_variables_initializer() #tf.global_variables_initializer()
 
         with tf.Session(config=config) as sess:
             sess.run(init)
 
-            summary_op = tf.merge_all_summaries()
-            summary_writer = tf.train.SummaryWriter(self.log_dir, sess.graph)
+            summary_op = tf.summary.merge_all()
+            summary_writer = tf.summary.FileWriter(self.log_dir, sess.graph)
 
             saver = tf.train.Saver()
 
