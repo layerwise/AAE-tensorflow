@@ -6,9 +6,9 @@ Tensorflow implementation of [Adversarial Autoencoders](https://arxiv.org/abs/15
 ## Prerequisites
 
 - Python 2.7
-- [Tensorflow 0.10.0rc0](https://www.tensorflow.org/)
+- [Tensorflow 1.4](https://www.tensorflow.org/)
 - [SciPy](http://www.scipy.org/install.html)
-- [Prettytensor 0.6.2](https://github.com/google/prettytensor)
+- [Prettytensor 0.7.4](https://github.com/google/prettytensor)
 - [Progressbar 2.3](https://pypi.python.org/pypi/progressbar/2.3)
 
 ## Usage
