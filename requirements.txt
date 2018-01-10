@@ -1,7 +1,7 @@
 matplotlib==1.5.1
 numpy==1.11.1
 scipy==0.17.0
-tensorflow==0.10.0rc0
-prettytensor==0.6.2
+tensorflow==1.4
+prettytensor==0.7.4
 progressbar=2.3
 
