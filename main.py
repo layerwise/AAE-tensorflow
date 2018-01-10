@@ -58,14 +58,14 @@ MNIST_AAE_HYPERPARAMS = {
 MNIST_VAE_HYPERPARAMS = {
     "output_dist": MeanBernoulli(IMG_DIM),
     "latent_dist": Gaussian(LATENT_DIM),
-    "target_dist": Gaussian(LATENT_DIM, fix_std=True),
+    "target_dist": Gaussian(LATENT_DIM, fix_std=True, stddev=1.),
     "dataset": DATASET,
     "batch_size": 128,
     "max_epoch": 1000,
     "updates_per_epoch": 200,
     "learning_rates": [1e-3, 2e-4, 0],
     "regularization": "variational",
-    "network_type": "fully_connected"
+    "network_type": "fully-connected"
 }
 
 MNIST_VAAE_HYPERPARAMS = {
